@@ -7,46 +7,54 @@ from tkinter import *
 from tkinter import ttk
 import random
 
-#Declaring the top level widget
-window = tk.Tk()
-window.title('ClickMe!')
-window.geometry('400x300') # x = 400, y = 300
-window.resizable(0, 0)
+class ClickMe(tk.Tk):
 
-#Variabless
-clickCounterInt = 0
-randX = 0
-randY = 0
+    #Constructor for the class
+    def __init__(self):
+        super().__init__()
 
-greeting = tk.Label(text="Welcome to ClickMe!\nThe goal is... to click me")
-greeting.pack()
+        #Instance Variables
+        self._randX = 0
+        self._randY = 0
+        self._clickCounterInt = 0
 
-#Generates a random X coordinate
-def genRandomX():
-    global randX
-    randX = random.randint(0, 375)
+        #Window Geometry
+        self.title('ClickMe!')
+        self.geometry('400x300')
+        self.resizable(0, 0)
 
-#Generates a random Y coordinate
-def genRandomY():
-    global randY
-    randY = random.randint(0, 275)
+        #Greeting Label
+        self.greeting = tk.Label(self, text="Welcome to ClickMe!\nThe goal is... to click me")
+        self.greeting.pack()
 
-#Button click action
-def OnClick():
-    global clickCounterInt
-    clickCounterInt += 1
-    clickCounter.config(text = str(clickCounterInt))
+        #Click Counter
+        self.clickCounter = tk.Label(self, text = str(0))
+        self.clickCounter.place(relx = 1.0, rely = 1.0, anchor = SE)
+        self.clickCounter.config(font = ("Impact", 35))
 
-    genRandomX(), genRandomY()
-    clickMeButton.place(x = randX, y = randY)
+        #ClickMeButton
+        self.clickMeButton = tk.Button(text = "Click me!", width = 10, height = 2, command = self.OnClick)
+        self.clickMeButton.place(x = 160, y = 140)
 
+    #Generates a random X coordinate
+    def genRandomX(self):
+        self._randX = random.randint(0, 375)
 
-clickCounter = tk.Label(text = str(0))
-clickCounter.place(relx = 1.0, rely = 1.0, anchor = SE)
-clickCounter.config(font = ("Impact", 35))
+    #Generates a random Y coordinate
+    def genRandomY(self):
+        self._randY = random.randint(0, 275)
 
-clickMeButton = tk.Button(text = "Click me!", width = 10, height = 2, command = OnClick)
-clickMeButton.place(x = 160, y = 140)
+    #Button click action
+    def OnClick(self):
+        #Increments the click counter
+        self._clickCounterInt += 1
+        self.clickCounter.config(text = str(self._clickCounterInt))
 
-#Calling the program
-window.mainloop()
+        #Moves the button to a random place on the screen
+        self.genRandomX(), self.genRandomY()
+        self.clickMeButton.place(x = self._randX, y = self._randY)
+
+#Runs the program
+if __name__ == "__main__":
+    ClickMeApp = ClickMe()
+    ClickMeApp.mainloop()
