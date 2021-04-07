@@ -14,6 +14,12 @@ from tkinter import *
 #Random library
 import random
 
+#Time library
+import time
+
+#Global variables
+elapsedTime = 0.0
+
 #Main App Class
 class ClickMe(tk.Tk):
     #Constructor for the class
@@ -24,6 +30,8 @@ class ClickMe(tk.Tk):
         self._randX = 0
         self._randY = 0
         self._clickCounterInt = 0
+        self._timerActive = True
+        global elapsedTime
 
         #Window Geometry
         self.title('ClickMe!')
@@ -40,9 +48,18 @@ class ClickMe(tk.Tk):
         self.clickCounter.place(relx = 1.0, rely = 1.0, anchor = SE)
         self.clickCounter.config(font = ("Impact", 35))
 
+        #Timer label
+        self.timerValue = ttk.Label(self, text = str(elapsedTime))
+        self.timerValue.place(x = 0, y = 236)
+        self.timerValue.config(font = ("Impact", 35))
+
         #ClickMeButton
         self.clickMeButton = ttk.Button(text = "Click me!", command = self.OnClick)
         self.clickMeButton.place(x = 160, y = 140)
+
+    #Toggles the timer(Called once starts the timer, called a second time stops it)
+    def toggleTime():
+        elapsedTime = time.time()
 
     #Generates a random X coordinate
     def genRandomX(self):
