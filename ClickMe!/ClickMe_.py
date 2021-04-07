@@ -40,7 +40,7 @@ class ClickMe(tk.Tk):
         self.title('ClickMe!')
         self.geometry('400x300')
         self.resizable(0, 0)
-        self.iconbitmap("DEhzsgnXcAMatG0.ico")
+        #self.iconbitmap("DEhzsgnXcAMatG0.ico")
         self.style = ttk.Style().theme_use('vista')
 
         #Greeting Label
