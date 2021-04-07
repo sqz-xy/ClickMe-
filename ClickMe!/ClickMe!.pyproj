@@ -31,6 +31,7 @@
     <Resource Include="target.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="givehimtome.mp3" />
     <Content Include="oggy.mp3" />
     <Content Include="thud.mp3" />
     <Content Include="yuh.mp3" />

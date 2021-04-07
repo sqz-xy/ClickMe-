@@ -45,14 +45,16 @@ class ClickMe(tk.Tk):
         #Initializes the mixer
         pygame.mixer.init()
         self._sound1 = pygame.mixer.Sound("oggy.mp3")
-        self._sound1.set_volume(0.02)
+        self._sound1.set_volume(0.03)
         self._sound2 = pygame.mixer.Sound("yuh.mp3")
-        self._sound2.set_volume(0.02)
+        self._sound2.set_volume(0.03)
         self._sound3 = pygame.mixer.Sound("thud.mp3")
-        self._sound3.set_volume(0.02)
+        self._sound3.set_volume(0.03)
+        self._sound4 = pygame.mixer.Sound("givehimtome.mp3")
+        self._sound4.set_volume(0.11)
 
         #Array of sounds
-        self._sounds = [self._sound2, self._sound3]
+        self._sounds = [self._sound2, self._sound3, self._sound4]
 
         #Target image path and default size
         self._buttonSizeX = 100
@@ -100,7 +102,7 @@ class ClickMe(tk.Tk):
 
         #ClickMeButton
         self.clickMeButton = tk.Button(text = "Click me!", image = self._target, width = self._buttonSizeX, height = self._buttonSizeY, command = self.OnClick)
-        self.clickMeButton.place(x = 160, y = 140)
+        self.clickMeButton.place(x = 145, y = 100)
 
     #Plays one of the sound effects
     def playSound(self):
