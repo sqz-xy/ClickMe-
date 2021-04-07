@@ -2,8 +2,9 @@
 #07/04/2021
 
 #Imports 
-from tkinter import *
 import tkinter as tk
+from tkinter import *
+from tkinter import ttk
 import random
 
 #Declaring the top level widget
