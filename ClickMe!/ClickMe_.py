@@ -42,7 +42,7 @@ class ClickMe(tk.Tk):
         self._clickCounterInt = 0
         self._averageSecs = 0.0
 
-        #Initializes the mixer
+        #Initializes the mixer and the sounds
         pygame.mixer.init()
         self._sound1 = pygame.mixer.Sound("oggy.mp3")
         self._sound1.set_volume(0.03)
