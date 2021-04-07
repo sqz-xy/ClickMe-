@@ -33,16 +33,26 @@ class ClickMe(tk.Tk):
     def __init__(self):
         super().__init__()
 
-        #Instance Variables
+        #Random vars
         self._randX = 0
         self._randY = 0
+        self._randSong = 0
+
+        #Counter vars
         self._clickCounterInt = 0
         self._averageSecs = 0.0
 
         #Initializes the mixer
         pygame.mixer.init()
         self._sound1 = pygame.mixer.Sound("oggy.mp3")
-        self._sound1.set_volume(0.1)
+        self._sound1.set_volume(0.02)
+        self._sound2 = pygame.mixer.Sound("yuh.mp3")
+        self._sound2.set_volume(0.02)
+        self._sound3 = pygame.mixer.Sound("thud.mp3")
+        self._sound3.set_volume(0.02)
+
+        #Array of sounds
+        self._sounds = [self._sound2, self._sound3]
 
         #Target image path and default size
         self._buttonSizeX = 100
@@ -92,6 +102,11 @@ class ClickMe(tk.Tk):
         self.clickMeButton = tk.Button(text = "Click me!", image = self._target, width = self._buttonSizeX, height = self._buttonSizeY, command = self.OnClick)
         self.clickMeButton.place(x = 160, y = 140)
 
+    #Plays one of the sound effects
+    def playSound(self):
+        self._randSong = random.randint(0, len(self._sounds))
+        self._sounds[self._randSong - 1].play()
+
     #Resizes the button on click
     def resizeButton(self):
         if(self._buttonSizeX <= 6 & self._buttonSizeY <= 6):
@@ -123,11 +138,15 @@ class ClickMe(tk.Tk):
     #Button click action
     def OnClick(self):
         #Plays the sound on press
-        self._sound1.play()
+        self.playSound()
 
         #Increments the click counter
         self._clickCounterInt += 1
         self.clickCounter.config(text = str(self._clickCounterInt))
+
+        #Celebration sound every 10 clicks
+        if(self._clickCounterInt % 15 == 0):
+            self._sound1.play()
 
         #Calculates the average amount of time between clicks
         self.calculateClickAverage()
