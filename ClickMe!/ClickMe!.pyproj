@@ -11,6 +11,7 @@
     <OutputPath>.</OutputPath>
     <Name>ClickMe!</Name>
     <RootNamespace>ClickMe!</RootNamespace>
+    <InterpreterId>Global|PythonCore|3.7</InterpreterId>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -24,10 +25,18 @@
     <Compile Include="ClickMe_.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DEhzsgnXcAMatG0.ico">
+    <Resource Include="DEhzsgnXcAMatG0.ico">
       <Publish>True</Publish>
-    </Content>
-    <Content Include="target.png" />
+    </Resource>
+    <Resource Include="target.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="oggy.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <InterpreterReference Include="Global|PythonCore|3.7" />
+    <InterpreterReference Include="Global|PythonCore|3.8" />
+    <InterpreterReference Include="Global|PythonCore|3.9" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

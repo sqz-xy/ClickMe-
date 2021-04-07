@@ -2,7 +2,7 @@
 #07/04/2021
 
 #TODO:
-# Timer
+# Fix the Image imports
 
 #ttkthemes imports
 from tkinter import ttk
@@ -20,6 +20,9 @@ import random
 #Time library
 import time
 
+#Pygame
+import pygame
+
 #Global variables
 elapsedTime = 0.0
 startTime = None
@@ -36,10 +39,17 @@ class ClickMe(tk.Tk):
         self._clickCounterInt = 0
         self._averageSecs = 0.0
 
+        #Initializes the mixer
+        pygame.mixer.init()
+        self._sound1 = pygame.mixer.Sound("oggy.mp3")
+        self._sound1.set_volume(0.1)
+
+        #Target image path and default size
         self._buttonSizeX = 100
         self._buttonSizeY = 100
         self._targetPath = "target.png"
 
+        #Target image
         self._target = Image.open(self._targetPath)
         self._target = self._target.resize((self._buttonSizeX, self._buttonSizeY), Image.ANTIALIAS)
         self._target = ImageTk.PhotoImage(self._target)
@@ -112,6 +122,9 @@ class ClickMe(tk.Tk):
 
     #Button click action
     def OnClick(self):
+        #Plays the sound on press
+        self._sound1.play()
+
         #Increments the click counter
         self._clickCounterInt += 1
         self.clickCounter.config(text = str(self._clickCounterInt))
