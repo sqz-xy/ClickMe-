@@ -42,6 +42,7 @@ def OnClick():
 
 clickCounter = tk.Label(text = str(0))
 clickCounter.place(relx = 1.0, rely = 1.0, anchor = SE)
+clickCounter.config(font = ("Impact", 35))
 
 clickMeButton = tk.Button(text = "Click me!", width = 10, height = 2, command = OnClick)
 clickMeButton.place(x = 160, y = 140)
