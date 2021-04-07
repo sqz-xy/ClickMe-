@@ -19,6 +19,7 @@ import time
 
 #Global variables
 elapsedTime = 0.0
+startTime = None
 
 #Main App Class
 class ClickMe(tk.Tk):
@@ -30,7 +31,9 @@ class ClickMe(tk.Tk):
         self._randX = 0
         self._randY = 0
         self._clickCounterInt = 0
-        self._timerActive = False
+        self._averageSecs = 0.0
+
+        #Global variable use
         global elapsedTime
 
         #Window Geometry
@@ -57,6 +60,13 @@ class ClickMe(tk.Tk):
         self.clickMeButton = ttk.Button(text = "Click me!", command = self.OnClick)
         self.clickMeButton.place(x = 160, y = 140)
 
+    #Calculates the average amount of clicks
+    def calculateClickAverage(self):
+        elapsedTime = time.time() - startTime
+        _averageSecs = float(elapsedTime) / float(self._clickCounterInt)
+        _averageSecs = round(_averageSecs, 2)
+        self.timerValue.config(text = str(_averageSecs))
+
     #Generates a random X coordinate
     def genRandomX(self):
         self._randX = random.randint(0, 375)
@@ -71,11 +81,15 @@ class ClickMe(tk.Tk):
         self._clickCounterInt += 1
         self.clickCounter.config(text = str(self._clickCounterInt))
 
+        #Calculates the average amount of time between clicks
+        self.calculateClickAverage()
+
         #Moves the button to a random place on the screen
         self.genRandomX(), self.genRandomY()
         self.clickMeButton.place(x = self._randX, y = self._randY)
 
 #Runs the program
 if __name__ == "__main__":
+    startTime = time.time()
     ClickMeApp = ClickMe()
     ClickMeApp.mainloop()
