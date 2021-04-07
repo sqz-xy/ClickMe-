@@ -11,18 +11,22 @@ window.title('ClickMe!')
 window.geometry('400x300')
 window.resizable(0, 0)
 
+#Variabless
+clickCounterInt = 0
+
 greeting = tk.Label(text="Welcome to ClickMe!\nThe goal is... to click me")
 greeting.pack()
 
-
-
-#def OnClick:
+def OnClick():
+    global clickCounterInt
+    clickCounterInt += 1
+    clickCounter.config(text = str(clickCounterInt))
 
 
 clickCounter = tk.Label(text = str(0))
 clickCounter.place(relx = 1.0, rely = 1.0, anchor = SE)
 
-clickMeButton = tk.Button(text = "Click me!", width = 10, height = 2)
+clickMeButton = tk.Button(text = "Click me!", width = 10, height = 2, command = OnClick)
 clickMeButton.place(relx = 0.5, rely = 0.5, anchor = CENTER)
 
 #Calling the program
