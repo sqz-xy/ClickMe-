@@ -36,8 +36,12 @@ class ClickMe(tk.Tk):
         self._clickCounterInt = 0
         self._averageSecs = 0.0
 
-        self._target = Image.open("target.png")
-        self._target = self._target.resize((100, 100), Image.ANTIALIAS)
+        self._buttonSizeX = 100
+        self._buttonSizeY = 100
+        self._targetPath = "target.png"
+
+        self._target = Image.open(self._targetPath)
+        self._target = self._target.resize((self._buttonSizeX, self._buttonSizeY), Image.ANTIALIAS)
         self._target = ImageTk.PhotoImage(self._target)
 
         #Global variable use
@@ -47,7 +51,7 @@ class ClickMe(tk.Tk):
         self.title('ClickMe!')
         self.geometry('400x300')
         self.resizable(0, 0)
-        #self.iconbitmap("DEhzsgnXcAMatG0.ico")
+        self.iconbitmap("DEhzsgnXcAMatG0.ico")
         self.style = ttk.Style().theme_use('vista')
 
         #Greeting Label
@@ -75,8 +79,21 @@ class ClickMe(tk.Tk):
         self.timerValueInfo.config(font = ("Impact", 11))
 
         #ClickMeButton
-        self.clickMeButton = tk.Button(text = "Click me!", image = self._target, width = 100, height = 100, command = self.OnClick)
+        self.clickMeButton = tk.Button(text = "Click me!", image = self._target, width = self._buttonSizeX, height = self._buttonSizeY, command = self.OnClick)
         self.clickMeButton.place(x = 160, y = 140)
+
+    #Resizes the button on click
+    def resizeButton(self):
+        if(self._buttonSizeX <= 6 & self._buttonSizeY <= 6):
+            return
+        else:
+            self._buttonSizeX -= 2 
+            self._buttonSizeY -= 2
+
+        self._target = Image.open(self._targetPath)
+        self._target = self._target.resize((self._buttonSizeX, self._buttonSizeY), Image.ANTIALIAS)
+        self._target = ImageTk.PhotoImage(self._target)
+        self.clickMeButton.config(width = self._buttonSizeX, height = self._buttonSizeY, image = self._target)
 
     #Calculates the average amount of clicks
     def calculateClickAverage(self):
@@ -105,6 +122,9 @@ class ClickMe(tk.Tk):
         #Moves the button to a random place on the screen
         self.genRandomX(), self.genRandomY()
         self.clickMeButton.place(x = self._randX, y = self._randY)
+
+        #Resizes the button
+        self.resizeButton()
 
 #Runs the program
 if __name__ == "__main__":
