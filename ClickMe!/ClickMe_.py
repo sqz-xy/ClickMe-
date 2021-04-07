@@ -43,18 +43,28 @@ class ClickMe(tk.Tk):
         self.style = ttk.Style().theme_use('vista')
 
         #Greeting Label
-        self.greeting = ttk.Label(self, text="Welcome to ClickMe!\nThe goal is... to click me")
+        self.greeting = ttk.Label(self, text="Welcome to ClickMe! The goal is...")
         self.greeting.pack()
 
         #Click Counter
         self.clickCounter = ttk.Label(self, text = str(0))
-        self.clickCounter.place(relx = 1.0, rely = 1.0, anchor = SE)
+        self.clickCounter.place(x = 325, y = 236)
         self.clickCounter.config(font = ("Impact", 35))
 
-        #Timer label
+        #Text label for Click Counter
+        self.clickCounterInfo = ttk.Label(self, text = "Total Clicks:")
+        self.clickCounterInfo.place(x = 300, y = 225)
+        self.clickCounterInfo.config(font = ("Impact", 11))
+
+        #Average time between clicks 
         self.timerValue = ttk.Label(self, text = str(0.0))
-        self.timerValue.place(x = 0, y = 236)
+        self.timerValue.place(x = 50, y = 236)
         self.timerValue.config(font = ("Impact", 35))
+
+        #Text label for timerValue
+        self.timerValueInfo = ttk.Label(self, text = "Average time between clicks:")
+        self.timerValueInfo.place(x = 0, y = 225)
+        self.timerValueInfo.config(font = ("Impact", 11))
 
         #ClickMeButton
         self.clickMeButton = ttk.Button(text = "Click me!", command = self.OnClick)
