@@ -111,11 +111,11 @@ class ClickMe(tk.Tk):
 
     #Resizes the button on click
     def resizeButton(self):
-        if(self._buttonSizeX <= 6 & self._buttonSizeY <= 6):
+        if(self._buttonSizeX <= 5 & self._buttonSizeY <= 5):
             return
         else:
-            self._buttonSizeX -= 2 
-            self._buttonSizeY -= 2
+            self._buttonSizeX -= 1
+            self._buttonSizeY -= 1
 
         self._target = Image.open(self._targetPath)
         self._target = self._target.resize((self._buttonSizeX, self._buttonSizeY), Image.ANTIALIAS)
