@@ -27,6 +27,7 @@
     <Content Include="DEhzsgnXcAMatG0.ico">
       <Publish>True</Publish>
     </Content>
+    <Content Include="target.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in

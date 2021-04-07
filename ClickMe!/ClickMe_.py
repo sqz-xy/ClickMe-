@@ -11,6 +11,9 @@ from tkinter import ttk
 import tkinter as tk
 from tkinter import *
 
+#Pillow Imports
+from PIL import ImageTk, Image
+
 #Random library
 import random
 
@@ -32,6 +35,10 @@ class ClickMe(tk.Tk):
         self._randY = 0
         self._clickCounterInt = 0
         self._averageSecs = 0.0
+
+        self._target = Image.open("target.png")
+        self._target = self._target.resize((100, 100), Image.ANTIALIAS)
+        self._target = ImageTk.PhotoImage(self._target)
 
         #Global variable use
         global elapsedTime
@@ -68,7 +75,7 @@ class ClickMe(tk.Tk):
         self.timerValueInfo.config(font = ("Impact", 11))
 
         #ClickMeButton
-        self.clickMeButton = ttk.Button(text = "Click me!", command = self.OnClick)
+        self.clickMeButton = tk.Button(text = "Click me!", image = self._target, width = 100, height = 100, command = self.OnClick)
         self.clickMeButton.place(x = 160, y = 140)
 
     #Calculates the average amount of clicks
